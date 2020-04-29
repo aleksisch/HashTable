@@ -1,0 +1,8 @@
+set datafile separator ';'
+set terminal jpeg size 2000, 2000
+set yrange [0 : * < 2000]
+system "mkdir gnuplot"
+do for [i = 0:6] {
+	set output sprintf("gnuplot/output_%d.jpeg", i)
+	plot sprintf("output_%d.csv", i) with impulses
+}

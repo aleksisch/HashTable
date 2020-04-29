@@ -1,0 +1,1 @@
+/usr/bin/c++   -O0 -masm=intel -g inc/find.o  -g  -rdynamic CMakeFiles/hash.dir/main.cpp.o  -o hash 
