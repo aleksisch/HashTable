@@ -4,23 +4,29 @@ INC = inc/
 HASH_ASM = $(INC)find.asm
 HASH_OBJ = $(INC)find.o 
 
-PROFILER = callgrind_out
+PROFILER = false
 
-FLAG = -O3 -masm=intel -Iinc/ -g -no-pie
+OPTIMIZE = -O0
+FLAG = $(OPTIMIZE) -masm=intel -Iinc/ -no-pie
+TYPE = "default"
 
 all: build profiler clean
 
 plot: build
-	@./$(ELF_FILE)
+	@./$(ELF_FILE) plot
 	@gnuplot plot_script
 	@$(MAKE) clean
 
+run: build
+	@/usr/bin/time -f "\n%E real\n%U user\n%S sys" ./$(ELF_FILE) $(TYPE)
+	@$(MAKE) profiler TYPE=$(TYPE)
+	@$(MAKE) clean
 build:
-	nasm -f elf64 $(HASH_ASM)
+	@nasm -f elf64 $(HASH_ASM) -o $(HASH_OBJ)
 	@g++ -o $(ELF_FILE) $(FLAG) $(CPP) $(HASH_OBJ)
 
-profiler:
-	@valgrind --tool=callgrind  ./$(ELF_FILE)
+profiler: 
+	@valgrind --tool=callgrind  ./$(ELF_FILE) $(TYPE)
 	@kcachegrind
 
 clean:

@@ -1,5 +1,0 @@
-set datafile separator ';'
-do for [i = 0:6] {
-	set term wxt i
-	plot sprintf("output_%d.csv", i) with impulses
-}

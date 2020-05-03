@@ -127,14 +127,14 @@ namespace TestHash {
     unsigned int hash6(const char* a) {
         int res = 0;
         for (int i = 0; a[i] != 0; i++) {
-            res += a[i] * (i + 1413) + 124;
+            res += a[i] * (i + 1412313);
         }
         return res;
     }
 
     unsigned int hash7(const char* a) {
         std::hash<const char*> f;
-        return f(a);
+        return (f(a) >> 4);
     }
     std::vector<unsigned int (*)(const char*)> arr{hash1, hash2, hash3, hash4, hash5, hash6, hash7};
 
@@ -165,6 +165,6 @@ namespace TestHash {
             std::ofstream output("output_" + std::to_string(i) + ".csv");
             output << out_buff.str();
         }
-        system("gnuplot -p plot_script");
+            system("gnuplot -p plot_script");
     }
 }

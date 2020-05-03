@@ -24,7 +24,7 @@ FindListAsm:
 		cmp ax, 0
 			je .End
 		mov rbx, [rbx]
-
+		jmp .Loop
 	.End:
 
 	mov eax, 0
