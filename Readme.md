@@ -75,9 +75,11 @@ unsigned int hash3 (const char* a) {
 
 ![image](results_profiler/cpp_prof.png) 
 
+ Мы видим, что основное процессорное время занимает поиск по списку и вычисление хэша. Оптимизируем их, переписав на ассемблер. Измерим новое время работы. 
+
  С ассемблерной оптимизацией (4053f3 - find, 4053e0 - hash):
  
-![image](results_profiler/asm_prof.png) 
+![image](results_profiler/asm_prof.png)
 
 Время работы:
 
