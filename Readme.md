@@ -67,11 +67,11 @@ unsigned int hash3 (const char* a) {
 ![image](gnuplot/output_6.jpeg "std::hash")
 
 
- #### Дальнейшие измерения провоились с функцией xor+rot hash
+ ## Дальнейшие измерения провоились с функцией xor+rot hash
 
  Измерим время работы и прогоним через profiler:
 
- g++ -O0, без оптимизации на asm
+ #### Без оптимизации, на asm (-0O):
 
 ![image](results_profiler/cpp_prof.png) 
 
